@@ -4,11 +4,34 @@ import Driveable from '../interfaces/Driveable.js';
 // Vehicle class that implements Driveable interface
 class Vehicle implements Driveable {
   // Declare properties of the Vehicle class
-  started: boolean;
-  currentSpeed: number;
+  make: string;
+     model: string;
+    year: number;
+    color: string;
+    engineSize: number;
+    transmission: string;
+    started: boolean;
+    currentSpeed: number;
+  static model: any;
+  static make: any;
+
+  
 
   // Constructor for the Vehicle class
-  constructor() {
+  constructor(
+    make: string,
+    model: string,
+    year: number,
+    color: string,
+    engineSize: number,
+    transmission: string
+  ) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.color = color;
+    this.engineSize = engineSize;
+    this.transmission = transmission;
     this.started = false;
     this.currentSpeed = 0;
   }
@@ -17,12 +40,18 @@ class Vehicle implements Driveable {
   printDetails(): void {
     console.log(`Vehicle started: ${this.started}`);
     console.log(`Vehicle current speed: ${this.currentSpeed} mph`);
+    console.log(`Vehicle current make: ${this.make}`);
+    console.log(`Vehicle current model: ${this.model}`);
+    console.log(`Vehicle current year: ${this.year}`);
+    console.log(`Vehicle current color: ${this.color} `);
+    console.log(`Vehicle current engineSize: ${this.engineSize}` );
+    console.log(`Vehicle current transmission ${this.transmission}`);
   }
 
   // Method to start the vehicle
   start(): void {
     this.started = true;
-    console.log('Vehicle started');
+    console.log(`The ${this.year} ${this.make} ${this.model} is now starting and running`);
   }
 
   // Method to accelerate the vehicle
@@ -30,7 +59,7 @@ class Vehicle implements Driveable {
     // Check if the vehicle is started
     if (this.started) {
       this.currentSpeed += change;
-      console.log(`Vehicle accelerated to ${this.currentSpeed} mph`);
+      console.log(`${this.make} ${this.model} to ${this.currentSpeed} mph`);
     } else {
       console.log('Start the vehicle first');
     }
@@ -41,7 +70,7 @@ class Vehicle implements Driveable {
     // Check if the vehicle is started
     if (this.started) {
       this.currentSpeed -= change;
-      console.log(`Vehicle decelerated to ${this.currentSpeed} mph`);
+      console.log(`${this.make} ${this.model} decelerated to ${this.currentSpeed} mph`);
     } else {
       console.log('Start the vehicle first');
     }
@@ -65,15 +94,21 @@ class Vehicle implements Driveable {
   }
 
   // Method to reverse the vehicle
-  reverse(): void {
+  reverse(): void { 
     // Check if the vehicle is started
     if (this.started) {
-      console.log('Vehicle reversed');
-    } else {
+      if (this.currentSpeed === 0)
+      console.log('Vehicle is now in reverse');
+    } else { 
+      console.log('Vehicle must be stopped before reversing')
+  } {
       console.log('Start the vehicle first');
     }
   }
 }
+
+
+
 
 // Export the Vehicle class
 export default Vehicle;
